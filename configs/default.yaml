@@ -1,0 +1,92 @@
+seed_everything: 0
+
+trainer:
+  logger:
+    class_path: lightning.pytorch.loggers.TensorBoardLogger
+    init_args:
+      save_dir: 'NA_models'
+      name: 'Runs'
+      version: 'NA8_GS32_OSM32_SH64Siren'
+  callbacks:
+    - class_path: lightning.pytorch.callbacks.ModelCheckpoint
+      init_args:
+        monitor: "val_loss"
+        save_last: True
+        filename: "{epoch}-{val_loss:.2f}"
+  max_epochs: 500
+
+model:
+  #---- Google Maps Setting ------------------
+  GS_dim: 32                          # Google Satellite data embedding dimension.
+  GS_model: 'moco_resnet18'           # Google Satellite data model.
+  GS_trainable: False                 # Google Satellite data model trainable. Only use False when a pretrained model is used.
+  # When not using the Google Satellite view put GS_dim to 0 and GS_model to 'None'.
+  # Implemented models are: moco_resnet18, moco_resnet50 and vectorized
+
+  #------ Open Street Maps Settings ----------
+  OSM_dim: 32                         # Open Street Map data embedding dimension.
+  OSM_model: 'hexconv'                # Open Street Map data model.
+  OSM_trainable: True                 # Open Street Map data model trainable. Only use False when a pretrained model is used.
+  hex_numb_rings: 3                   # Number of hexagonal rings used in the hexagonal input data.
+  hex_in_channels: 6                  # Number of input channels in the hexagonal data.
+  OSM_conv_layers: [16, 8]            # Number of filters in the convolutional layers of the hexagonal data encoder, tuple means multiple layers.
+  # When not using the Open Street Map view put OSM_dim to 0 and OSM_model to 'None'.
+  # Implemented models are: hexconv
+
+  #------ Sentinel2 Satellite Settings -------
+  S2_dim: 0                           # Sentinel 2 data embedding dimension.
+  S2_model: 'None'                    # Sentinel 2 data model.
+  S2_trainable: False                 # Sentinel 2 data model trainable. Only use False when a pretrained model is used
+  vision_width: 128                   # Vision width for ResNet or ViT fitting. Not used when pretrained model is used.
+  vision_patch_size: 32               # Used when fitting a ViT model. Not used when pretrained model is used.
+  # When not using the Sentinel 2 view put S2_dim to 0 and S2_model to 'None'.
+  # Implemented models are: (pretrained) moco_resnet18, moco_resnet50, moco_vit16, (selftrained) transformer, tuple/list for resnet
+
+  #------- Flood Maps Settings ---------------
+  FM_dim: 0                           # Floodmaps data embedding dimension.
+  FM_model: 'None'                    # Floodmaps data model.
+  FM_trainable: True                  # Floodmaps data model trainable. Only use False when a pretrained model is used.
+  FM_conv_layers: [16, 8]             # Number of filters in the convolutional layers of the floodmap data encoder, tuple means multiple layers.
+  # When not using the Flood Maps view put FM_dim to 0 and FM_model to 'None'.
+  # Implemented models are: None at this time
+
+  #-------- Combining Views Settings ---------
+  Combined_dim: 8                    # Combined data embedding dimension.
+  Combined_layers: 1                  # Hidden layers from concatenation of views to embedding.
+  Combined_capacity: 128              # Number of nodes in the hidden layers between views and embedding.
+  # When not using combination layers, put combined_layers to 'None'. The embedding dimension will then be GS_dim + OSM_dim + S2_dim + FM_dim.
+  # When Combined_layers = 0 the spatial view embedding are concatenated and connected to a layer of dimension Combined_dim.
+  # When Combined_layers > 0 the spatial view embeddings are concatenated and connected to Combined_layers hidden layers of dimension Combined_capacity.
+
+  #---------- Location Encoder Settings ------
+  pos_encoder: 'sphericalharmonics'   # Type of positional encoder. See location_encoder.py for implemented types.
+  loc_encoder: 'siren'                # Type of location encoder. See location_encoder.py for implemented types.
+  loc_layers: 2                       # Number of hidden layers in location encoder if using a type which allows for multiple layers.
+  loc_capacity: 128                   # Number of nodes in the hidden layers in location encoder if using a type which allows for multiple layers.
+  
+  #----------- Other Settings ----------------
+  image_resolution: 256               # Resolution of all images, always use 256.
+  learning_rate: 0.00001              # Learning rate for gradient descent.
+  weight_decay: 0.01                  # Weight decay for gradient descent.
+  checkpoint_path:                    # Path to checkpoint if a trained model is to be preloaded.
+  
+  #---------- Extra settings depending on the choice of location encoder ----
+  frequency_num: 16                   # Does not matter with analytic SH.
+  max_radius: 0.01                    # Does not matter with analytic SH.
+  min_radius: 0.000001                # Does not matter with analytic SH.
+  legendre_polys: 64                  # Number of Legendre polynomials to be used in positional encoder - more results in a finer grid over the earth.
+  sh_embedding_dims: 32               # not used.
+
+data:
+  # If one or more of the views is not used, enter None as corresponding path. Otherwise the dataloader module will return an error.
+  data_dir: '/home/frynn/Documents/SynologyDrive/MV_satclip/'
+  datapoints_csv: '/home/frynn/Documents/SynologyDrive/Data/Datapoints/NorthAmerican_datapoints.csv'
+  data_dir_GS: '/home/frynn/Documents/SynologyDrive/Data/Image_data_res256/images'
+  data_dir_OSM: '/home/frynn/Documents/SynologyDrive/Data/OSM_hexdata'
+  data_dir_S2: 'None'
+  data_dir_FM: 'None'
+  batch_size: 512
+  num_workers: 16
+  val_random_split_fraction: 0.1
+
+watchmodel: True
