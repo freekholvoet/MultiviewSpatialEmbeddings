@@ -1,0 +1,30 @@
+# Multi-view Spatial Embeddings
+# Requirements for mamba environment: mvspatialembedding_env
+
+# Deep Learning Frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+lightning>=2.0.0
+
+# Geospatial and Remote Sensing
+torchgeo>=0.5.0
+rasterio>=1.3.0
+
+# Computer Vision
+opencv-python>=4.8.0
+albumentations>=1.3.0
+timm>=0.9.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Mathematical Operations
+einops>=0.7.0
+sympy>=1.12
+
+# Visualization
+matplotlib>=3.7.0
+
+# Utilities
+pyyaml>=6.0
