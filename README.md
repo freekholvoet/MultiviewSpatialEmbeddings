@@ -41,7 +41,7 @@ from huggingface_hub import hf_hub_download
 
 # Download the trained model
 model_path = hf_hub_download(
-    repo_id="FreekH/MultiviewSpatialEmbeddings",
+    repo_id="FreekH/multiview_spatial_embedding",
     filename="MODEL_NAME.ckpt",
     cache_dir="./models"
 )
@@ -52,7 +52,7 @@ Replace `MODEL_NAME.ckpt` with the desired model filename from the list above.
 Or using the HuggingFace CLI:
 
 ```bash
-huggingface-cli download FreekH/MultiviewSpatialEmbeddings MODEL_NAME.ckpt --local-dir ./models
+huggingface-cli download FreekH/multiview_spatial_embedding MODEL_NAME.ckpt --local-dir ./models
 ```
 
 ## Citation
