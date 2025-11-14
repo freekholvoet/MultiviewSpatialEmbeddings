@@ -67,7 +67,7 @@ with torch.no_grad():
     emb = model(c.to(device).double()).detach().cpu().numpy()
 ```
 
-Replace `MODEL_NAME.ckpt` with the desired model filename from the list above.
+Replace `MODEL_NAME.ckpt` with the desired model filename from the list above. The Jupyter Notebook Add_embeddings_to_data.ipynb contains a function to systematically add embeddings to a data set containing a latitude and a longitude feature. 
 
 ## Citation
 
