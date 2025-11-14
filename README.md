@@ -34,26 +34,40 @@ There are five different models available in our HuggingFace repository:
 - `EU64_GS64.ckpt`
 - `EU8_GS32_OSM32.ckpt`
 
-To download any of these models, use the following code:
+Example on how to download the models and calculate embeddings for a list of latitude, longitude coordinates:
 
 ```python
 from huggingface_hub import hf_hub_download
+from load_lightweight import get_mvloc_encoder
+import torch
 
-# Download the trained model
-model_path = hf_hub_download(
-    repo_id="FreekH/multiview_spatial_embedding",
-    filename="MODEL_NAME.ckpt",
-    cache_dir="./models"
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Example coordinates (latitude, longitude) of various European cities
+c = torch.tensor([
+    (50.8503, 4.3517),   # Brussels
+    (48.8566, 2.3522),   # Paris
+    (51.5074, -0.1278),  # London
+    (52.5200, 13.4050),  # Berlin
+    (41.9028, 12.4964),  # Rome
+    (40.4168, -3.7038),  # Madrid
+    (59.3293, 18.0686),  # Stockholm
+    (60.1699, 24.9384),  # Helsinki
+    (47.4979, 19.0402),  # Budapest
+    (48.2082, 16.3738),  # Vienna
+], dtype=torch.float32) 
+
+model = get_mvloc_encoder(
+    hf_hub_download("FreekH/multiview_spatial_embedding", "MODEL_NAME.ckpt"),
+    device=device
 )
+model.to(device)
+
+with torch.no_grad():
+    emb = model(c.to(device).double()).detach().cpu().numpy()
 ```
 
 Replace `MODEL_NAME.ckpt` with the desired model filename from the list above.
-
-Or using the HuggingFace CLI:
-
-```bash
-huggingface-cli download FreekH/multiview_spatial_embedding MODEL_NAME.ckpt --local-dir ./models
-```
 
 ## Citation
 
