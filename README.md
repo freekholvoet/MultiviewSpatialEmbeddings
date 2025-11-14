@@ -20,12 +20,41 @@ The repository contains the following files:
     - requirements.txt
     - environment.yml
 
-- Already trained models, as described in the paper in Section 3.4
-    - Trained_Model/EU16_OSM16.ckpt
-    - The other models mentioned in Section 3.4 of the paper are to large in size to upload to GitHub. We are looking for a solution for this. If needed, please contact me at freek.holvoet@kuleuven.be
-
 - Example on how to use the trained models to extract embeddings
-    - Trained_Model/Add_embeddings_to_data.ipynb: A Jupyter notebook showing how to add embeddings to a data set containing a latitude and a longitude columns. 
+    - Add_embeddings_to_data.ipynb: A Jupyter notebook showing how to add embeddings to a data set containing a latitude and a longitude columns. 
+
+## Using the pretrained models
+
+The trained models, as described in Section 3.4 of the paper, can be downloaded via HuggingFace.
+
+There are five different models available in our HuggingFace repository:
+
+- `EU16_GS32_OSM16.ckpt`
+- `EU16_OSM16.ckpt`
+- `EU32_GS96_OSM32.ckpt`
+- `EU64_GS64.ckpt`
+- `EU8_GS32_OSM32.ckpt`
+
+To download any of these models, use the following code:
+
+```python
+from huggingface_hub import hf_hub_download
+
+# Download the trained model
+model_path = hf_hub_download(
+    repo_id="FreekH/MultiviewSpatialEmbeddings",
+    filename="MODEL_NAME.ckpt",
+    cache_dir="./models"
+)
+```
+
+Replace `MODEL_NAME.ckpt` with the desired model filename from the list above.
+
+Or using the HuggingFace CLI:
+
+```bash
+huggingface-cli download FreekH/MultiviewSpatialEmbeddings MODEL_NAME.ckpt --local-dir ./models
+```
 
 ## Citation
 
@@ -35,9 +64,10 @@ If you use this work in your research, please cite:
 
 Bibtex version:
 ```bibtex
-@article{holvoet2024multiview,
+@article{holvoet2025multiview,
   title={A multi-view contrastive learning framework for spatial embeddings in risk modeling},
   author={Holvoet, Freek and Blier-Wong, Christopher and Antonio, Katrien},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
 }
+```
