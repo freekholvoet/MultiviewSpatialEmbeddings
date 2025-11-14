@@ -13,7 +13,8 @@ The repository contains the following files:
 - The multiview spatial embedding model:
     - Folder "config" contains the parameters of the model and the locations to all data for training
     - Folder "datamodules" contains the code to read in the data when training the model
-    - Folder "positional_encoding" contains the code for the location encoder. Multiple encoders are given, the one used in the paper is the  spherical_harmonics_ylm.py. For explanations on the other, see the [GitHub Repository of the  SatCLIP model](https://github.com/microsoft/satclip). 
+    - Folder "positional_encoding" contains the code for the location encoder. Multiple encoders are given; the one used in the paper is the  spherical_harmonics_ylm.py.
+    - Our code started as a fork from the [GitHub Repository of the  SatCLIP model](https://github.com/microsoft/satclip). Some terminology remains from their code.  
 
 - Environment specifications for training the spatial embedding model (can differ based on your operating system):
     - requirements.txt
