@@ -72,11 +72,25 @@ Replace `MODEL_NAME.ckpt` with the desired model filename from the list above. T
 
 ## Citation
 
+Citation of the paper:
+
 ```bibtex
 @article{holvoet2025multiview,
   title={A multi-view contrastive learning framework for spatial embeddings in risk modeling},
   author={Holvoet, Freek and Blier-Wong, Christopher and Antonio, Katrien},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
+}
+```
+
+Citation for the models:
+```bibtex
+@misc{freek_holvoet_2025,
+    author       = { Freek Holvoet },
+    title        = { multiview_spatial_embedding},
+    year         = 2025,
+    url          = { https://huggingface.co/FreekH/multiview_spatial_embedding },
+    doi          = { 10.57967/hf/7009 },
+    publisher    = { Hugging Face }
 }
 ```
