@@ -85,12 +85,13 @@ Citation of the paper:
 
 Citation for the models:
 ```bibtex
-@misc{freek_holvoet_2025,
-    author       = { Freek Holvoet },
-    title        = { multiview_spatial_embedding},
-    year         = 2025,
-    url          = { https://huggingface.co/FreekH/multiview_spatial_embedding },
-    doi          = { 10.57967/hf/7009 },
-    publisher    = { Hugging Face }
+@misc{holvoet_pretrainedmodels,
+	author       = { Freek Holvoet },
+	title        = { Spatial embeddings via multiview contrastive learning},
+	year         = 2025,
+	note         = {[Pretrained spatial embedding models]},
+	url          = { https://huggingface.co/FreekH/multiview_spatial_embedding },
+	doi          = { 10.57967/hf/7009 },
+	publisher    = { Hugging Face }
 }
 ```
