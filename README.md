@@ -25,7 +25,7 @@ The repository contains the following files:
 
 ## Using the pretrained models
 
-The trained models, as described in Section 3.4 of the paper, can be downloaded via HuggingFace.
+The trained models, as described in Section 3.4 of the paper, can be downloaded from our HuggingFace repository: https://huggingface.co/FreekH/multiview_spatial_embedding.
 
 There are five different models available in our HuggingFace repository:
 
