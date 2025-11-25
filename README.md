@@ -2,9 +2,9 @@
 
 In this repository, we provide the code and the trained models as described in our paper: 
 
-> Holvoet, F., Blier-Wong, C., & Antonio, K. (2025). A multi-view contrastive learning framework for spatial embeddings in risk modeling. *arXiv preprint arXiv:XXXX.XXXXX*.
+> Holvoet, F., Blier-Wong, C., & Antonio, K. (2025). A multi-view contrastive learning framework for spatial embeddings in risk modeling. *arXiv preprint arXiv:2511.17954*.
 
-Paper is available as pre-print via Arxiv: **[arXiv preprint arXiv:XXXX.XXXXX](https://arxiv.com)**
+Paper is available as pre-print via Arxiv: **[arXiv preprint arXiv:2511.17954]([https://arxiv.com](https://arxiv.org/abs/2511.17954))**
 
 ## Contents 
 
@@ -78,7 +78,7 @@ Citation of the paper:
 @article{holvoet2025multiview,
   title={A multi-view contrastive learning framework for spatial embeddings in risk modeling},
   author={Holvoet, Freek and Blier-Wong, Christopher and Antonio, Katrien},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2511.17954},
   year={2025}
 }
 ```
