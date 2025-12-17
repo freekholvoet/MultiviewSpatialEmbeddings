@@ -1,6 +1,8 @@
 # Multi-view Spatial Embeddings
 # Requirements for mamba environment: mvspatialembedding_env
 
+# These are the packages, and version numbers as used during on our machine specs. Depending on GPU type and CUDA version, other package versions might be needed.
+
 # Deep Learning Frameworks
 torch>=2.0.0
 torchvision>=0.15.0
